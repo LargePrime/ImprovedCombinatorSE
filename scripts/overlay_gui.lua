@@ -262,14 +262,19 @@ function overlay_gui.on_click_set_constant(event, entity_id)
                     number = 0
                     text = "0"
                 end
-
-                -- Cap values --
-                if number > 2000000000 then
-                    number = 2000000000
-                    text = "2000000000"
-                elseif number < -2000000000 then
-                    number = -2000000000
-                    text = "-2000000000"
+                -- check for nil --
+                if (number) then
+                    -- Cap values --
+                    if number > 2000000000 then
+                        number = 2000000000
+                        text = "2000000000"
+                    elseif number < -2000000000 then
+                        number = -2000000000
+                        text = "-2000000000"
+                    end
+                else
+                    number = 0
+                    text = "0"
                 end
 
                 node.gui.raw_value = text
